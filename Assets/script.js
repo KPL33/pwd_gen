@@ -81,5 +81,5 @@ function writePassword() {
 
 }
 
-/*The below asks the html element with the class 'btn' to 'listen'/notice when that element is 'click'ed. When it is, our 'password' that was stored by the 'writePassword' function above populates the "textarea" element with our password.*/
+/*The below asks the html element with the class 'btn' to 'listen'/notice when that element is 'click'ed. When it is, our 'password' that was stored by the 'writePassword' function above populates the "textarea" element with our password. */
 generateBtn.addEventListener("click", writePassword);
