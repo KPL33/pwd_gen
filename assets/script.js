@@ -7,13 +7,13 @@ let special = ['!', '@', '#', '$', '%', '^', '&', '*', '-', '+', '_', '=', '<', 
 
 /*Next, we define the function 'generatePassword'. Within it, we declare 2 'let' statements...
 1) The value of 'let choice' starts as an empty array, so that it can hold the 'choice' that the user makes in a series of prompts.
-2) The value of 'let passwordLength' stores the 'number' of characters that the user chooses. It uses 'parseInt' to convert the user's choice from the 'string' (which the user provides when prompted) to a 'number' that can then be checked against the 'conditions' of the next 'if' statement. It gets its 'value' by prompting the user to specify how many characters they would like in their password.*/
+2) The value of 'let passwordLength' stores the 'number' of characters that the user chooses. It uses 'parseInt' to convert the user's choice from a 'string' to a 'number' that can then be checked against the 'conditions' of the next 'if' statement. It gets its 'value' by prompting the user to specify how many characters they would like to include in their password.*/
 
 function generatePassword() {
   let choice = [];
   let passwordLength = parseInt(prompt("How many characters would you like your password to contain?"));
 
-  /*Our 'if' statement below verifies that 'parseInt' was able to 'parse' the 'string' entered by the user into a valid 'number' of characters (which is required to be a 'number'  and which we verify is 'true' by using 'isNan'—aka: 'is Not a Number') between the  minimum of 8 and does not exceed the maximum of 128. If any of these disqualifying 'conditions' evaluate as 'true', the user is 'alerted' with a message, asking them to try again.*/
+  /*Our 'if' statement below verifies that 'parseInt' was able to 'parse' the 'string' entered by the user into a valid 'number' of characters (which is required to be a 'number' and which we verify is 'true', by using 'isNan', aka: 'is Not a Number') between the  minimum of 8 and the maximum of 128. If any of these disqualifying 'conditions' evaluate as 'true', the user is 'alerted' with a message, asking them to try again.*/
 
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
     return alert("Please request a password between 8 and 128 characters long.");
@@ -36,7 +36,7 @@ function generatePassword() {
     return alert('Please click "OK" on at least one type of character to include so that a password may generate');
   }
 
-  /*Once the user has chosen at least 1 character type, the next 'if's check which category(s) evaluated as 'true' and accesses all characters from the corresponding array(s) that we established at the top of the code. These approved characters are then stored in the empty array that we assigned as the 'value' of our very 1st 'let' declaration of our 'generatePassword' 'function'. The value of 'choice' is now updated to include the values of the user-approved 'arrays' of characters, continually adding those 'arrays' if the user chose that category.*/
+  /*Once the user has chosen at least 1 character type, the next 'if's check which category(s) evaluated as 'true' and accesses all characters from the corresponding array(s) that we've established. These approved characters are then stored in the empty array that we assigned to 'generatePassword'. The value of 'choice' is now updated to include the values of the user-approved 'arrays' of characters, continually adding those 'arrays' if the user chose that category.*/
 
   if (includeUpper) {
     choice = choice.concat(upperCase);
@@ -55,7 +55,7 @@ function generatePassword() {
   
   The 'for' loop establishes 'i', at our starting point of '0'. 'i++' instructs the loop to increment the number of randomly-selected characters by 1 each time the loop needs to run, until 'i' is no longer < 'passwordLength'. The characters accumulate and once the value of 'i' is no longer < the value of 'passwordLength', the code stops and we have the desired number of characters for the user's requested password.
   
-  The 'let' within the 'for' loop uses 'Math.random' to 'pseudo-generate' a random number from (and including) 0 (up to but not including) 1. It then multiplies this number by the value of the 'length' of 'choice' (the number of characters chosen by the user). The 'Math.floor' method is then used to round this number (which when returned, may contain decimals) down to the nearest integer/whole number. It then uses this random integer to grab the character 'indexed' at that position in our 'choice' 'array'. It does this for 'i', inrementing 'i' upward once each loop, until 'i' < passwordLength no longer evaulates as 'true'. Finally, the 'password' value is appended with the characters selected by the 'randomIndex' 'array' that was run to get us our desired number of characters for the password.*/
+  The 'let' within the 'for' loop uses 'Math.random' to 'pseudo-generate' a random number from (and including) 0 (up to but not including) 1. It then multiplies this number by the value of the 'length' of 'choice' (the number of characters chosen by the user). The 'Math.floor' method is then used to round this number (which when returned, may contain decimals) down to the nearest integer/whole number. It then uses this random integer to grab the character 'indexed' at that position in our 'choice' 'array'. It does this for 'i', incrementing 'i' once each loop, until 'i < passwordLength' no longer evaulates as 'true'. Finally, the 'password' value is appended with the characters selected by the 'randomIndex' 'array' that was run to get us our desired number of characters for the password.*/
 
   let password = "";
   for (let i = 0; i < passwordLength; i++) {
@@ -76,9 +76,8 @@ function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
 
-  /*The below takes the 'value' portion of 'passwordText' and makes it now equal to the value of 'password'.*/
+  /*Here, we take the 'value' portion of 'passwordText' and make it now equal to the value of 'password'.*/
   passwordText.value = password;
-
 }
 
 /*The below asks the html element with the class 'btn' to 'listen'/notice when that element is 'click'ed. When it is, our 'password' that was stored by the 'writePassword' function above populates the "textarea" element with our password. */
